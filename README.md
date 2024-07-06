@@ -7,6 +7,7 @@ To get started with this project, follow these steps:
 4. Install project dependencies using Compose: ```composer install```
 5. Configure the `.env` file(DATABASE_URL)
 6. Migrate: ```php bin/console doctrine:migrations:migrate```
+7. Run consumers ```php bin/console messenger:consume async```
 
 ## Modules Overview
 
