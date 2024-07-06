@@ -1,5 +1,11 @@
 controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/Shared/Infrastructure/Controller/
+        namespace: App\Shared\Infrastructure\Controller
+    type: attribute
+
+data_controller:
+    resource:
+        path: ../src/AnalyticData/Infrastructure/Http/Controller/
+        namespace: App\AnalyticData\Infrastructure\Http\Controller
     type: attribute

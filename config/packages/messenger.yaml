@@ -1,0 +1,38 @@
+framework:
+    messenger:
+        default_bus: command_bus
+        buses:
+            command_bus:
+                middleware:
+                    - custom_messenger.middleware
+
+            query_bus:
+                middleware:
+                    - custom_messenger.middleware
+
+        transports:
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: messenger
+                    queues:
+                        messenger: ~
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # failed: 'doctrine://default?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+             'App\AnalyticData\Application\UseCase\Command\InsertData\InsertDataMongoCommand': async
+             'App\AnalyticData\Application\UseCase\Command\InsertData\InsertDataPostgreSQLCommand': async
+
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'
